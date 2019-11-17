@@ -20,7 +20,8 @@ var mime = {
 
 app.get('*', function (req, res) {
     console.log(JSON.stringify(req.headers));
-    var filename = req.path.split(/\//).shift();
+    
+    var filename = req.path.split(/\//).pop();
     var file = path.join(dir, filename);
     var type = mime[path.extname(file).slice(1)] || 'text/plain';
     var s = fs.createReadStream(file);
